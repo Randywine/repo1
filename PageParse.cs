@@ -11,10 +11,9 @@ namespace PaulsURLPageReader
    class PageParse
     {
     
-        public string pageReader(String url)
+        public string readPage(String url)
         {
-            
-                 
+                            
             //Set up request
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
@@ -28,9 +27,6 @@ namespace PaulsURLPageReader
             // save stream to single string
             string pageStr = sr.ReadToEnd();
             
-            // save string
-            File.WriteAllText(@"PageText.txt", pageStr);
-
             //send string back to form
             return pageStr;
     

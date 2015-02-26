@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace PaulsURLPageReader
 {
@@ -17,20 +18,25 @@ namespace PaulsURLPageReader
         public Web_Text_Parser()
         {
             InitializeComponent();
-            URLLabel.Text = URL;
+            tbURL.Text = URL;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnGetPage_Click(object sender, EventArgs e)
         {
             PageParse pp = new PageParse();
+            
+            String pageAsString = pp.readPage(URL);
 
-            String pageAsString = pp.pageReader(URL);
+            // save string to file
+            File.WriteAllText(@"PageText.txt", pageAsString);
+            
+            // send to form
             Display(pageAsString);
         }
         
         void Display(string s)
         {
-            ParsedWebStringBox.Text = s;
+            tbURLText.Text = s;
         }
 
      
